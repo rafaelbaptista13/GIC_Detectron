@@ -25,8 +25,8 @@ $transparent-gray: rgba(255, 255, 255, 0.5); // border frames not active
 $light-gray: rgba(34, 34, 34, 0.45); // border drag-n-drop
 $super-light-gray: rgba(34, 34, 34, 0.1); // border drag-n-drop
 $pale-gray: #979899; // plain text labels, plain texts, plain form borders
-$primary: #0082ca; // general buttons, accent text labels
-$primary-light: #7cbee3; // accent borders,
+$primary: #ff9800; // general buttons, accent text labels
+$primary-light: #f3b757; // accent borders,
 $primary-phantom-light: #f5f8f9; // accent borders,
 $primary-active: rgba(0, 130, 202, 0.1); // active background of list
 $light-blue: #40bfef; //information tooltips
@@ -41,3 +41,7 @@ $special-dark-gray: rgb(173, 173, 173); // scrollbar Handle on
 $special-light-blue: rgba(0, 130, 202, 0.02); // drag-n-drop hover
 $special-blue: rgba(0, 130, 202, 0.5); // drag-n-drop border hover
 $light-gray-special: #f1f1f1; // border bottom color
+
+path {
+    fill: black;
+}

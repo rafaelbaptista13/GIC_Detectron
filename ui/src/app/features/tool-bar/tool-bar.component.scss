@@ -33,6 +33,8 @@
       min-width: 0;
 
       .logo-main {
+        height: 50px;
+        
         @include mobile-portrait {
           display: none;
         }
