@@ -1,0 +1,73 @@
+
+# Create front end deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compreface-ui-deployment
+  namespace: gic7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: compreface-ui
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: compreface-ui
+    spec:
+      containers:
+        - image: registry.deti:5000/compreface-ui
+          name: compreface-ui
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+#
+#      affinity:
+#        podAntiAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#          - topologyKey: kubernetes.io/hostname
+#            labelSelector:
+#              matchLabels:
+#                app: compreface-fe          
+
+# Create Service for front end
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: compreface-ui-service
+  namespace: gic7
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: compreface-ui
+
+# Configure Traefik
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gic7-ingress
+  namespace: gic7
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+  - host: app-gic7.k3s
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: compreface-ui-service
+            port: 
+              number: 80
