@@ -1,0 +1,43 @@
+
+# Create core deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: detectron-core-deployment
+  namespace: gic7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: detectron-core
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: detectron-core
+    spec:
+      containers:
+        - env:
+          - name: ML_PORT
+            value: "3000"
+          image: registry.deti:5000/detectron-core
+          name: detectron-core
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always     
+
+# Create Service for core
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: detectron-core-service
+  namespace: gic7
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: detectron-core

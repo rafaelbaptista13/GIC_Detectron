@@ -1,0 +1,54 @@
+
+# Create api deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: detectron-api-deployment
+  namespace: gic7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: detectron-api
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: detectron-api
+    spec:
+      containers:
+        - env:
+          - name: API_JAVA_OPTS
+            value: '-Xmx8g'
+          - name: POSTGRES_PASSWORD
+            value: 'postgres'
+          - name: POSTGRES_URL
+            value: 'jdbc:postgresql://detectron-db-service:5432/frs'
+          - name: POSTGRES_USER
+            value: 'postgres'
+          - name: SAVE_IMAGES_TO_DB
+            value: 'true'
+          - name: SPRING_PROFILES_ACTIVE
+            value: 'dev'
+          image: registry.deti:5000/detectron-api
+          name: detectron-api
+          ports:
+          - containerPort: 8080
+          resources: {}
+        
+      restartPolicy: Always     
+
+# Create Service for api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: detectron-api-service
+  namespace: gic7
+spec:
+  ports:
+  - port: 8000
+    targetPort: 8080
+  selector:
+    app: detectron-api

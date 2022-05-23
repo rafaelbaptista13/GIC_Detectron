@@ -1,0 +1,49 @@
+# Configure Traefik
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gic7-ingress
+  namespace: gic7
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/frontend-entry-points: http,https
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+spec:
+  rules:
+  - host: detectron.pt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: detectron-fe-service
+            port: 
+              number: 8000
+      - path: /api/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: detectron-api-service
+            port: 
+              number: 8000
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: detectron-admin-service
+            port: 
+              number: 8000
+  - host: info.detectron.pt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: detectron-static-service
+            port: 
+              number: 80
+      
