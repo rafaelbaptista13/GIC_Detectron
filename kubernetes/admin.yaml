@@ -7,7 +7,7 @@ metadata:
   name: detectron-admin-deployment
   namespace: gic7
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: detectron-admin
@@ -27,11 +27,17 @@ spec:
           - name: EMAIL_USERNAME
           - name: ENABLE_EMAIL_SERVER
           - name: POSTGRES_PASSWORD
-            value: 'postgres'
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: password
           - name: POSTGRES_URL
             value: 'jdbc:postgresql://detectron-db-service:5432/frs'
           - name: POSTGRES_USER
-            value: 'postgres'
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: username
           - name: SPRING_PROFILES_ACTIVE
             value: 'dev'
           image: registry.deti:5000/detectron-admin
@@ -40,7 +46,14 @@ spec:
           - containerPort: 8080
           resources: {}
         
-      restartPolicy: Always     
+      restartPolicy: Always    
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app: detectron-admin
 
 # Create Service for admin api
 ---

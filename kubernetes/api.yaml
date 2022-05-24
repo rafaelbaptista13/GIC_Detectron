@@ -7,7 +7,7 @@ metadata:
   name: detectron-api-deployment
   namespace: gic7
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: detectron-api
@@ -22,11 +22,17 @@ spec:
           - name: API_JAVA_OPTS
             value: '-Xmx8g'
           - name: POSTGRES_PASSWORD
-            value: 'postgres'
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: password
           - name: POSTGRES_URL
             value: 'jdbc:postgresql://detectron-db-service:5432/frs'
           - name: POSTGRES_USER
-            value: 'postgres'
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: username
           - name: SAVE_IMAGES_TO_DB
             value: 'true'
           - name: SPRING_PROFILES_ACTIVE
@@ -38,7 +44,14 @@ spec:
           resources: {}
         
       restartPolicy: Always     
-
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app: detectron-api
+                
 # Create Service for api
 ---
 apiVersion: v1

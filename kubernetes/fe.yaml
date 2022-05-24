@@ -7,7 +7,7 @@ metadata:
   name: detectron-fe-deployment
   namespace: gic7
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: detectron-fe
@@ -23,7 +23,14 @@ spec:
           ports:
             - containerPort: 80
           resources: {}
-      restartPolicy: Always     
+      restartPolicy: Always    
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                app: detectron-fe 
 
 # Create Service for front end
 ---
