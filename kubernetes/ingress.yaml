@@ -22,20 +22,7 @@ spec:
             name: detectron-fe-service
             port: 
               number: 8000
-      - path: /api/v1
-        pathType: Prefix
-        backend:
-          service:
-            name: detectron-api-service
-            port: 
-              number: 8000
-      - path: /admin
-        pathType: Prefix
-        backend:
-          service:
-            name: detectron-admin-service
-            port: 
-              number: 8000
+      
   - host: info.detectron.pt
     http:
       paths:

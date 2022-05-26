@@ -35,4 +35,6 @@ def get_mxnet() -> Tuple[str, ...]:
     if ENV.INTEL_OPTIMIZATION:
         mxnet_lib += 'mkl'
     mxnet_lib = mxnet_lib.rstrip('-')
-    return (f'{mxnet_lib}<1.7',)
+
+    mxnet_lib = 'mxnet-noavx'
+    return (f'{mxnet_lib}',)

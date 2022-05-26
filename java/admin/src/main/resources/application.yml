@@ -127,4 +127,4 @@ image:
 environment:
   servers:
     PYTHON:
-      url: ${PYTHON_URL:http://compreface-core:3000}
+      url: ${PYTHON_URL:http://detectron-core-service:3000}
