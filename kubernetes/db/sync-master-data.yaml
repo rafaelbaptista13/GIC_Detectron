@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sync-master-data
+  namespace: gic7
+spec:
+  template:
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: OnFailure
+      containers:
+        - name: sync-master-data
+          image: postgres:11
+          command:
+            [
+              "sh",
+              "-c",
+              'PGPASSWORD="postgres" pg_basebackup -h postgres-master -D /var/lib/slave-postgresql/data -U repuser -vP',
+            ]
+          volumeMounts:
+            - mountPath: /var/lib/slave-postgresql/data
+              name: postgres-data
+              subPath: postgres
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-data-slave

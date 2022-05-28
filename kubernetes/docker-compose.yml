@@ -17,7 +17,7 @@ services:
 
   compreface-admin:
     restart: always
-    image: ${registry}compreface-admin:${ADMIN_VERSION}
+    image: registry.deti:5000/detectron-admin
     container_name: "compreface-admin"
     environment:
       - POSTGRES_USER=${postgres_username}
@@ -36,7 +36,7 @@ services:
 
   compreface-api:
     restart: always
-    image: ${registry}compreface-api:${API_VERSION}
+    image: registry.deti:5000/detectron-api
     container_name: "compreface-api"
     depends_on:
       - compreface-postgres-db
@@ -50,7 +50,7 @@ services:
 
   compreface-fe:
     restart: always
-    image: ${registry}compreface-fe:${FE_VERSION}
+    image: registry.deti:5000/detectron-fe
     container_name: "compreface-ui"
     ports:
       - "8000:80"
@@ -60,7 +60,7 @@ services:
 
   compreface-core:
     restart: always
-    image: ${registry}compreface-core:${CORE_VERSION}
+    image: registry.deti:5000/detectron-core
     container_name: "compreface-core"
     environment:
       - ML_PORT=3000

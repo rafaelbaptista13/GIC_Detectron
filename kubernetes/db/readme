@@ -1,0 +1,25 @@
+Deploy DB
+
+kubectl create cm postgres-master-configmap --from-file=config -n gic7
+
+kubectl apply -f pvc-master.yaml
+
+kubectl apply -f postgres-master-sts.yaml
+
+# Enter the pod shell
+kubectl exec -it postgres-master-0 -- bash
+su - postgres
+psql
+SET password_encryption = 'scram-sha-256';
+CREATE ROLE repuser WITH REPLICATION PASSWORD 'postgres' LOGIN;
+SELECT * FROM pg_create_physical_replication_slot('replica_1_slot');
+
+kubectl apply -f postgres-master-svc.yaml
+
+kubectl apply -f pvc-slave.yaml
+
+kubectl apply -f sync-master-data.yaml
+
+kubectl create cm postgres-slave-configmap --from-file=slave-config -n gic7
+
+kubectl apply -f postgres-slave-sts.yaml
