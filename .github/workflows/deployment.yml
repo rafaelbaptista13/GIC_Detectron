@@ -30,17 +30,17 @@ jobs:
         run: |
           
           # Fe Image
-          cd /ui
+          cd ~/GIC_Detectron/ui
           docker build -f docker-prod/Dockerfile . --tag registry.deti:5000/detectron-fe
           
           # Api and Admin Server Image
-          cd /java
+          cd ~/GIC_Detectron/java
           docker build -f ../dev/Dockerfile . -t build --target build
           docker build -f ../dev/Dockerfile . -t registry.deti:5000/detectron-api --target frs_core
           docker build -f ../dev/Dockerfile . -t registry.deti:5000/detectron-admin --target frs_crud
           
           # Embedding Servers Image
-          cd /embedding-calculator
+          cd ~/GIC_Detectron/embedding-calculator
           docker build . --tag registry.deti:5000/detectron-core
 
           
