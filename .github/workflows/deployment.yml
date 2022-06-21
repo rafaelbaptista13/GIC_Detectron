@@ -43,6 +43,10 @@ jobs:
           # Embedding Servers Image
           cd ~/actions-runner/_work/GIC_Detectron/GIC_Detectron/embedding-calculator
           docker build . --tag registry.deti:5000/detectron-core
+          
+          # Static Website Image
+          cd ~/static-website
+          docker build . -t registry.deti:5000/detectron-static-web
 
           
       # Step to push Docker images for each component
@@ -59,6 +63,9 @@ jobs:
           
           # Push Embedding Servers Image 
           docker push registry.deti:5000/detectron-core
+          
+          # Push Static Website Image
+          docker push registry.deti:5000/detectron-static-web
       
       # Step to apply configurations in Kubernetes Cluster
       - name: Apply configurations
@@ -69,3 +76,12 @@ jobs:
           kubectl apply -f kubernetes/fe.yaml
           kubectl apply -f kubernetes/ingress.yaml
           kubectl apply -f kubernetes/secrets.yaml
+          kubectl apply -f static-website/kubernetes/webpage.yaml 
+      
+      # Restart pods to get the updated images
+      - name: Reload pods
+        run: |
+          kubectl rollout restart deployment detectron-fe-deployment -n gic7
+          kubectl rollout restart deployment detectron-admin-deployment -n gic7
+          kubectl rollout restart deployment detectron-api-deployment -n gic7
+          kubectl rollout restart deployment detectron-core-deployment -n gic7
