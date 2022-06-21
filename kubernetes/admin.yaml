@@ -32,7 +32,7 @@ spec:
                 name: db-secret
                 key: password
           - name: POSTGRES_URL
-            value: 'jdbc:postgresql://postgres-master:5432/frs'
+            value: 'jdbc:postgresql://postgresql-postgresql-ha-pgpool.gic7.svc.cluster.local/frs'
           - name: POSTGRES_USER
             value: postgres
           - name: SPRING_PROFILES_ACTIVE
