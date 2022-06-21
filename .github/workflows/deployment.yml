@@ -28,7 +28,8 @@ jobs:
       # Step to create Docker images for each componenet
       - name: Build Docker images
         run: |
-
+          
+          whoami
           # Fe Image
           cd ~/actions-runner/_work/GIC_Detectron/GIC_Detectron/ui
           docker build -f docker-prod/Dockerfile . --tag registry.deti:5000/detectron-fe
