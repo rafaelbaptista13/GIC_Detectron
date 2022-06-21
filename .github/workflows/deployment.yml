@@ -85,3 +85,4 @@ jobs:
           kubectl rollout restart deployment detectron-admin-deployment -n gic7
           kubectl rollout restart deployment detectron-api-deployment -n gic7
           kubectl rollout restart deployment detectron-core-deployment -n gic7
+          kubectl rollout restart deployment detectron-static-deployment -n gic7
