@@ -45,7 +45,7 @@ jobs:
           docker build . --tag registry.deti:5000/detectron-core
           
           # Static Website Image
-          cd ~/static-website
+          cd ~/actions-runner/_work/GIC_Detectron/GIC_Detectron/static-website
           docker build . -t registry.deti:5000/detectron-static-web
 
           
