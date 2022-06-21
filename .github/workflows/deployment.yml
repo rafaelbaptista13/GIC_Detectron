@@ -67,5 +67,5 @@ jobs:
           kubectl apply -f kubernetes/api.yaml
           kubectl apply -f kubernetes/core.yaml
           kubectl apply -f kubernetes/fe.yaml
-          kubectl apply -f kubernetes/ingres.yaml
+          kubectl apply -f kubernetes/ingress.yaml
           kubectl apply -f kubernetes/secrets.yaml
