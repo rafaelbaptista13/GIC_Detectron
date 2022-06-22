@@ -33,3 +33,23 @@ spec:
            name: prometheus-server-conf
        - name: prometheus-storage-volume
          emptyDir: {}
+
+
+# Create Service for prometheus
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: gic7
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '9090'
+spec:
+  selector: 
+    app: prometheus-server
+  type: NodePort  
+  ports:
+    - port: 8080
+      targetPort: 9090 
+      nodePort: 30001
