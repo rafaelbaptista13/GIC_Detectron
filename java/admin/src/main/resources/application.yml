@@ -28,7 +28,7 @@ spring:
       max-request-size: 10MB
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://compreface-postgres-db:5432/frs}
+    url: ${POSTGRES_URL:jdbc:postgresql://10.43.240.212:5432/postgres}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     continue-on-error: true
