@@ -28,7 +28,7 @@ spring:
       max-request-size: 10MB
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${POSTGRES_URL:jdbc:postgresql://my-release-postgresql-ha-pgpool.gic7.svc.cluster.local:5432/postgres}
+    url: ${POSTGRES_URL:jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     continue-on-error: true
