@@ -29,7 +29,7 @@ spec:
           - name: POSTGRES_URL
             value: 'jdbc:postgresql://10.43.90.114:5432/app_db'
           - name: POSTGRES_USER
-            value: db-user
+            value: postgres
           - name: SAVE_IMAGES_TO_DB
             value: 'true'
           - name: SPRING_PROFILES_ACTIVE
