@@ -27,9 +27,9 @@ spec:
                 name: db-secret
                 key: password
           - name: POSTGRES_URL
-            value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
+            value: 'jdbc:postgresql://10.43.90.114:5432/app_db'
           - name: POSTGRES_USER
-            value: postgres
+            value: db-user
           - name: SAVE_IMAGES_TO_DB
             value: 'true'
           - name: SPRING_PROFILES_ACTIVE
