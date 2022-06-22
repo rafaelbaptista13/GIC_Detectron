@@ -32,9 +32,9 @@ spec:
                 name: db-secret
                 key: password
           - name: POSTGRES_URL
-            value: 'jdbc:postgresql://postgresql-dev:5432/app_db'
+            value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
           - name: POSTGRES_USER
-            value: db-user
+            value: postgres
           - name: SPRING_PROFILES_ACTIVE
             value: 'dev'
           image: registry.deti:5000/detectron-admin
