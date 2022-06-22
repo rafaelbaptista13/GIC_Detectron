@@ -29,8 +29,8 @@ spec:
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: db-secret
-                key: password
+                name: my-release-postgresql-ha-postgresql
+                key: postgresql-password
           - name: POSTGRES_URL
             value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
           - name: POSTGRES_USER
