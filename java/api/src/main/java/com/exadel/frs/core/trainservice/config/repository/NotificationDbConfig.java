@@ -21,12 +21,15 @@ public class NotificationDbConfig {
         String dbUsername = env.getProperty("spring.datasource-pg.username");
         String dbPassword = env.getProperty("spring.datasource-pg.password");
 
-        String databaseUrl = "jdbc:pgsql" + dbUrl.substring(15);
+        //String databaseUrl = "jdbc:pgsql" + dbUrl.substring(15);
 
-        dataSource.setDatabaseUrl(databaseUrl);
+        //dataSource.setDatabaseUrl(databaseUrl);
+        dataSource.setHost("my-release-postgresql-ha-pgpool:5432");
+        dataSource.setPort(5432);
         dataSource.setUser(dbUsername);
         dataSource.setPassword(dbPassword);
-        //dataSource.setHousekeeper(false);
+        dataSource.setDatabaseName("postgres");
+        dataSource.setHousekeeper(false);
         return dataSource;
     }
 }
