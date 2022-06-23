@@ -20,9 +20,9 @@ public class NotificationDbConfig {
         String dbUsername = env.getProperty("spring.datasource-pg.username");
         String dbPassword = env.getProperty("spring.datasource-pg.password");
 
-        //String databaseUrl = dbUrl.replaceAll("postgresql", "pgsql");
+        String databaseUrl = "jdbc:pgsql" + dbUrl.substring(15);
 
-        dataSource.setDatabaseUrl(dbUrl);
+        dataSource.setDatabaseUrl(databaseUrl);
         dataSource.setUser(dbUsername);
         dataSource.setPassword(dbPassword);
         dataSource.setHousekeeper(false);
