@@ -1,6 +1,8 @@
 package com.exadel.frs.core.trainservice.config.repository;
 
 import com.impossibl.postgres.jdbc.PGDataSource;
+import com.impossibl.postgres.protocol.ssl.SSLMode;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,7 @@ public class NotificationDbConfig {
         dataSource.setDatabaseUrl(databaseUrl);
         dataSource.setUser(dbUsername);
         dataSource.setPassword(dbPassword);
+        dataSource.setSslMode(SSLMode.Require.name());
         dataSource.setHousekeeper(false);
         return dataSource;
     }
