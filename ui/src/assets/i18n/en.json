@@ -26,7 +26,7 @@
     "title": "Login",
     "email": "Email",
     "password": "Password",
-    "no_account": "Do not have an account?",
+    "no_account": "Don't have an account?",
     "sign_up": "Sign Up",
     "email_hint": "Email should have correct format",
     "password_hint": "Password is required",

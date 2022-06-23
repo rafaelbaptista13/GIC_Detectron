@@ -1,0 +1,39 @@
+# Create static web page deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: detectron-static-deployment
+  namespace: gic7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: detectron-static
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: detectron-static
+    spec:
+      containers:
+        - image: registry.deti:5000/detectron-static-web
+          name: detectron-static
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always     
+
+# Create Service for static web page
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: detectron-static-service
+  namespace: gic7
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: detectron-static

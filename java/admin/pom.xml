@@ -107,6 +107,7 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
+            <version>42.4.0</version>
         </dependency>
         <!-- SECURITY -->
         <dependency>
