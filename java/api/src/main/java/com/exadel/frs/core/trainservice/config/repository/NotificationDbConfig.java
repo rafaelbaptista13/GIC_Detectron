@@ -23,6 +23,8 @@ public class NotificationDbConfig {
 
         String databaseUrl = "jdbc:pgsql" + dbUrl.substring(15);
         System.out.println(databaseUrl);
+        System.out.println(dbUsername);
+        System.out.println(dbPassword);
         dataSource.setDatabaseUrl(databaseUrl);
         dataSource.setUser(dbUsername);
         dataSource.setPassword(dbPassword);
