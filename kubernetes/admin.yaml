@@ -27,10 +27,11 @@ spec:
           - name: EMAIL_USERNAME
           - name: ENABLE_EMAIL_SERVER
           - name: POSTGRES_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: my-release-postgresql-ha-postgresql
-                key: postgresql-password
+            value: postgres
+            #valueFrom:
+            #  secretKeyRef:
+            #    name: my-release-postgresql-ha-postgresql
+            #    key: postgresql-password
           - name: POSTGRES_URL
             value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
           - name: POSTGRES_USER

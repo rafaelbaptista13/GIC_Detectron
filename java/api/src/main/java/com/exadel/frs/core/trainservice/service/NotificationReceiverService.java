@@ -57,7 +57,7 @@ public class NotificationReceiverService {
         };
         try {
             connection = pgNotificationDatasource.getConnection().unwrap(PGConnection.class);
-
+            System.out.println(connection);
             Statement statement = connection.createStatement();
             statement.executeUpdate("LISTEN face_collection_update_msg");
 
