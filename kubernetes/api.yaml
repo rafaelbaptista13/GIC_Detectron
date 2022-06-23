@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
         - env:
-          - name: API_JAVA_OPTS
-            value: '-Xmx8g'
+          #- name: API_JAVA_OPTS
+          #  value: '-Xmx8g'
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
