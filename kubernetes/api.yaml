@@ -22,13 +22,12 @@ spec:
           #- name: API_JAVA_OPTS
           #  value: '-Xmx8g'
           - name: POSTGRES_PASSWORD
-            value: postgres
-            #valueFrom:
-            #  secretKeyRef:
-            #    name: my-release-postgresql-ha-postgresql
-            #    key: postgresql-password
+            valueFrom:
+              secretKeyRef:
+                name: db-secret
+                key: password
           - name: POSTGRES_URL
-            value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
+            value: 'jdbc:postgresql://postgres-master:5432/frs'
           - name: POSTGRES_USER
             value: postgres
           - name: SAVE_IMAGES_TO_DB
