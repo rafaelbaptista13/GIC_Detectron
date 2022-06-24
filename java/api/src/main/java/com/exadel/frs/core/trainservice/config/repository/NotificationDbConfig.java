@@ -29,7 +29,7 @@ public class NotificationDbConfig {
         //dataSource.setUser(dbUsername);
         //dataSource.setPassword(dbPassword);
         //dataSource.setHousekeeper(false);
-        dataSource.setServerName("my-release-postgresql-ha-pgpool"); 
+        dataSource.setServerName("my-release-postgresql-ha-postgresql"); 
         dataSource.setPort(5432);
         dataSource.setDatabaseName("postgres"); 
         dataSource.setUser("postgres"); 
