@@ -2,6 +2,9 @@ package com.exadel.frs.core.trainservice.config.repository;
 
 import com.impossibl.postgres.jdbc.PGDataSource;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,12 +32,18 @@ public class NotificationDbConfig {
         //dataSource.setUser(dbUsername);
         //dataSource.setPassword(dbPassword);
         //dataSource.setHousekeeper(false);
-        dataSource.setServerName("my-release-postgresql-ha-postgresql"); 
+        dataSource.setServerName("my-release-postgresql-ha-pgpool"); 
         dataSource.setPort(5432);
         dataSource.setDatabaseName("postgres"); 
         dataSource.setUser("postgres"); 
         dataSource.setPassword("postgres");
-        System.out.println(dataSource.toString());
+        try {
+            Connection get_connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.out.println("aqui");
+            e.printStackTrace();
+        }
         return dataSource;
     }
 }

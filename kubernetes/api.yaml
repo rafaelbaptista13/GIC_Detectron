@@ -28,7 +28,7 @@ spec:
             #    name: my-release-postgresql-ha-postgresql
             #    key: postgresql-password
           - name: POSTGRES_URL
-            value: 'jdbc:postgresql://my-release-postgresql-ha-postgresql:5432/postgres'
+            value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
           - name: POSTGRES_USER
             value: postgres
           - name: SAVE_IMAGES_TO_DB
