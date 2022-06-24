@@ -78,6 +78,14 @@ jobs:
           kubectl apply -f kubernetes/secrets.yaml
           kubectl apply -f static-website/kubernetes/webpage.yaml 
       
+      # Step to restart the master and slave database deployments
+      - name: Restart Master and Slave BD Deployments
+        run: |
+          kubectl delete -f postgres-master-sts.yaml 
+          kubectl delete -f postgres-slave-sts.yaml
+          kubectl apply -f postgres-master-sts.yaml
+          kubectl apply -f postgres-slave-sts.yaml
+        
       # Restart pods to get the updated images
       - name: Reload pods
         run: |
