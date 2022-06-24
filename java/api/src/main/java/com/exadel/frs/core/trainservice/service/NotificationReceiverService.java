@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -58,11 +56,7 @@ public class NotificationReceiverService {
             }
         };
         try {
-            System.out.println("vou ligar");
-            Connection get_connection = pgNotificationDatasource.getConnection();
-            System.out.println(get_connection);
-            connection = get_connection.unwrap(PGConnection.class);
-            System.out.println(connection);
+            connection = pgNotificationDatasource.getConnection().unwrap(PGConnection.class);
             Statement statement = connection.createStatement();
             statement.executeUpdate("LISTEN face_collection_update_msg");
 
