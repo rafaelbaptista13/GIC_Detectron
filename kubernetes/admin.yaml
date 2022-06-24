@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
         - env:
-          - name: ADMIN_JAVA_OPTS
-            value: '-Xmx8g'
+          #- name: ADMIN_JAVA_OPTS
+          #  value: '-Xmx8g'
           - name: EMAIL_FROM
           - name: EMAIL_HOST
           - name: EMAIL_PASSWORD
@@ -29,10 +29,10 @@ spec:
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: my-release-postgresql-ha-postgresql
-                key: postgresql-password
+                name: db-secret
+                key: password
           - name: POSTGRES_URL
-            value: 'jdbc:postgresql://my-release-postgresql-ha-pgpool:5432/postgres'
+            value: 'jdbc:postgresql://postgres-master:5432/frs'
           - name: POSTGRES_USER
             value: postgres
           - name: SPRING_PROFILES_ACTIVE

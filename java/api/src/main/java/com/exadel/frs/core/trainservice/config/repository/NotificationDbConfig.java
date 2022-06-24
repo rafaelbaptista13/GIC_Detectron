@@ -1,6 +1,7 @@
 package com.exadel.frs.core.trainservice.config.repository;
 
 import com.impossibl.postgres.jdbc.PGDataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,8 @@ public class NotificationDbConfig {
         String dbUsername = env.getProperty("spring.datasource-pg.username");
         String dbPassword = env.getProperty("spring.datasource-pg.password");
 
-        String databaseUrl = dbUrl.replaceAll("postgresql", "pgsql");
-
+        String databaseUrl = "jdbc:pgsql" + dbUrl.substring(15);
+        
         dataSource.setDatabaseUrl(databaseUrl);
         dataSource.setUser(dbUsername);
         dataSource.setPassword(dbPassword);
