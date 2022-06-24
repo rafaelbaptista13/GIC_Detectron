@@ -58,6 +58,7 @@ public class NotificationReceiverService {
             }
         };
         try {
+            System.out.println("vou ligar");
             Connection get_connection = pgNotificationDatasource.getConnection();
             System.out.println(get_connection);
             connection = get_connection.unwrap(PGConnection.class);
