@@ -34,3 +34,15 @@ spec:
             port: 
               number: 80
       
+      
+  - host: gic7-pg-exporter.pt
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-postgres-exporter-1656014226
+            port: 
+              number: 80
+      
