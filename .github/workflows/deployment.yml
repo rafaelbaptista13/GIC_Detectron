@@ -81,10 +81,10 @@ jobs:
       # Step to restart the master and slave database deployments
       - name: Restart Master and Slave BD Deployments
         run: |
-          kubectl delete -f postgres-master-sts.yaml 
-          kubectl delete -f postgres-slave-sts.yaml
-          kubectl apply -f postgres-master-sts.yaml
-          kubectl apply -f postgres-slave-sts.yaml
+          kubectl delete -f kubernetes/db/postgres-master-sts.yaml 
+          kubectl delete -f kubernetes/db/postgres-slave-sts.yaml
+          kubectl apply -f kubernetes/db/postgres-master-sts.yaml
+          kubectl apply -f kubernetes/db/postgres-slave-sts.yaml
         
       # Restart pods to get the updated images
       - name: Reload pods
